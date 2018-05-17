@@ -42,6 +42,7 @@ public class LoginVM extends BaseViewModel {
         if (responseData.key.equals(ApiService.GENERATE_KEY)) {
             SharedPrefsManager.getInstance().setString(GlobalKeys.KEY_X_API, (String) responseData.data);
         } else if (responseData.key.equals(ApiService.SIGN_IN)) {
+            SharedPrefsManager.getInstance().setUserModel((UserModel) responseData.data);
             userModelLiveData.setValue((UserModel) responseData.data);
         }
     }

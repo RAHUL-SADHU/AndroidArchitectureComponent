@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData;
 
 import rahul.com.androidprojectstructure.baseclass.SingleLiveData;
 import rahul.com.androidprojectstructure.model.AboutUsModel;
+import rahul.com.androidprojectstructure.model.PaginationModel;
 import rahul.com.androidprojectstructure.model.ResponseData;
 import rahul.com.androidprojectstructure.model.UserModel;
 import retrofit2.Call;
@@ -58,6 +59,21 @@ public class NetworkManager {
 
             @Override
             public void onFailureResponse(Call<ResponseData<AboutUsModel>> call, ResponseData<ResponseData<AboutUsModel>> responseData) {
+                apiError.postValue(responseData.message);
+            }
+        });
+    }
+
+    public void RequestUserListData(Call<ResponseData<PaginationModel<UserModel>>> call, final String key) {
+        call.enqueue(new CallbackResponse<ResponseData<PaginationModel<UserModel>>>() {
+            @Override
+            public void onSuccessResponse(Call<ResponseData<PaginationModel<UserModel>>> call, ResponseData<ResponseData<PaginationModel<UserModel>>> response) {
+                response.key = key;
+                apiResponse.postValue(response);
+            }
+
+            @Override
+            public void onFailureResponse(Call<ResponseData<PaginationModel<UserModel>>> call, ResponseData<ResponseData<PaginationModel<UserModel>>> responseData) {
                 apiError.postValue(responseData.message);
             }
         });

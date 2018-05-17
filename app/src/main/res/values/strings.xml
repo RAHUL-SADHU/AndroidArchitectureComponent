@@ -7,4 +7,6 @@
     <string name="please_enter_valid_email">Please enter valid email.</string>
     <string name="please_enter_password">Please enter password.</string>
     <string name="please_enter_minimum_password">Please enter minimum five characters.</string>
+    <string name="content_user_profile">User profile image</string>
+    <string name="retry">Retry</string>
 </resources>

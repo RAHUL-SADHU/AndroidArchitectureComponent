@@ -3,6 +3,8 @@ package rahul.com.androidprojectstructure.utility;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import rahul.com.androidprojectstructure.model.UserModel;
+
 /**
  * Created by Rahul Sadhu
  */
@@ -62,12 +64,18 @@ public class SharedPrefsManager {
     public void removeKey(String key) {
         getPrefs().edit().remove(key).apply();
     }
+
     public boolean containsKey(String key) {
         return getPrefs().contains(key);
     }
 
     public String getString(String key) {
         return getPrefs().getString(key, null);
+    }
+
+    public void setUserModel(UserModel userModel) {
+        setString(GlobalKeys.KEY_USER_ID, userModel.getUserid());
+        setString(GlobalKeys.KEY_ACCESS_TOKEN, userModel.getAccesstoken());
     }
 
 
